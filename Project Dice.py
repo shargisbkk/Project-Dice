@@ -1,5 +1,6 @@
 import random
 
+#Here's a comment from cecrumpton
 def roll_dice(num_dice, num_sides):
     rolls = [random.randint(1, num_sides) for _ in range(num_dice)]
     return rolls
