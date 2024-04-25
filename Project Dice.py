@@ -1,5 +1,6 @@
 import random
 
+# Defined functions for multiple call
 def roll_dice(num_dice, num_sides):
     rolls = [random.randint(1, num_sides) for _ in range(num_dice)]
     return rolls
@@ -25,7 +26,7 @@ def store_enemy(rolls, enemy_store):
     enemy_store.extend(rolls)
     return enemy_store
 
-
+# Game Constants
 store = [] # Store the player rolls
 enemy_store = [] # Store the npc roll
 num_dice = 7  # Set the number of dice to 7
@@ -33,12 +34,13 @@ num_sides = 6  # Set the number of sides on each die to 6
 reroll_count = 0  # Set initial count to 0
 roll_used = False  # Track if the roll command had been used
 player_health = 50 # Set player health to 50
-enemy_health = 100 # Set npc health to 100
+enemy_health = 50 # Set npc health to 50
 
-
+# Game loop
 while True:
     command = input("Enter 'roll', 'reroll', 'fight', or 'exit': ")
 
+    # Player commands
     if command == 'roll' and not roll_used:
         roll_used = True
         rolls = roll_dice(num_dice, num_sides)
@@ -73,6 +75,7 @@ while True:
         enemy_total = sum(enemy_store)
         print ("Player's Power:", player_total, "Devil's Power:", enemy_total)
 
+        # Compare player to enemy and determine game state
         if player_total > enemy_total:
             damage_enemy = player_total - enemy_total
             enemy_health = enemy_health - damage_enemy
@@ -102,7 +105,8 @@ while True:
 
 
     elif command == 'exit':
+        print("See you later, Gambino...")
         break
 
     else:
-        print("Invalid command. Please try again.")
+        print("Can't let you do that, Gambino...")
